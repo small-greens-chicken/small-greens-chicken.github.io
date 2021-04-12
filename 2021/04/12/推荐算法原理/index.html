@@ -7,12 +7,12 @@
   
   <title>简单的推荐算法原理 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基于用户的推荐算法基于用户的推荐算法是给A用户推荐与之兴趣相似的用户群B喜欢的商品而A用户没有的商品的集合 一. 找到与A用户兴趣相似的用户群B1. 计算用户之间的相似度余弦相似度：$$Wuv &#x3D; \frac{|N(u)\bigcap N(v)|} {\sqrt{|N(u)|*|N(v)|}}$$N(u)表示用户u所购买的物品集合，|N(u)|则是其购买物品数目，N(v)一样，对象是用户v 分母表">
+  <meta name="description" content="基于用户的推荐算法基于用户的推荐算法是给A用户推荐与之兴趣相似的用户群B喜欢的商品而A用户没有的商品的集合 一. 找到与A用户兴趣相似的用户群B1. 计算用户之间的相似度余弦相似度：  Wuv &#x3D; \frac{|N(u)\bigcap N(v)|} {\sqrt{|N(u)|*|N(v)|}}N(u)表示用户u所购买的物品集合，|N(u)|则是其购买物品数目，N(v)一样，对象是用户v 分母表示用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单的推荐算法原理">
 <meta property="og:url" content="http://example.com/2021/04/12/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="基于用户的推荐算法基于用户的推荐算法是给A用户推荐与之兴趣相似的用户群B喜欢的商品而A用户没有的商品的集合 一. 找到与A用户兴趣相似的用户群B1. 计算用户之间的相似度余弦相似度：$$Wuv &#x3D; \frac{|N(u)\bigcap N(v)|} {\sqrt{|N(u)|*|N(v)|}}$$N(u)表示用户u所购买的物品集合，|N(u)|则是其购买物品数目，N(v)一样，对象是用户v 分母表">
+<meta property="og:description" content="基于用户的推荐算法基于用户的推荐算法是给A用户推荐与之兴趣相似的用户群B喜欢的商品而A用户没有的商品的集合 一. 找到与A用户兴趣相似的用户群B1. 计算用户之间的相似度余弦相似度：  Wuv &#x3D; \frac{|N(u)\bigcap N(v)|} {\sqrt{|N(u)|*|N(v)|}}N(u)表示用户u所购买的物品集合，|N(u)|则是其购买物品数目，N(v)一样，对象是用户v 分母表示用">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412103052475.png">
 <meta property="og:image" content="c:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412104906864.png">
@@ -97,33 +97,29 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="基于用户的推荐算法"><a href="#基于用户的推荐算法" class="headerlink" title="基于用户的推荐算法"></a>基于用户的推荐算法</h2><p><strong>基于用户的推荐算法是给A用户推荐与之兴趣相似的用户群B喜欢的商品而A用户没有的商品的集合</strong></p>
-<h3 id="一-找到与A用户兴趣相似的用户群B"><a href="#一-找到与A用户兴趣相似的用户群B" class="headerlink" title="一. 找到与A用户兴趣相似的用户群B"></a><strong><em>一. 找到与A用户兴趣相似的用户群B</em></strong></h3><h4 id="1-计算用户之间的相似度"><a href="#1-计算用户之间的相似度" class="headerlink" title="1. 计算用户之间的相似度"></a>1. 计算用户之间的相似度</h4><p>余弦相似度：<br>$$<br>Wuv = \frac{|N(u)\bigcap N(v)|} {\sqrt{|N(u)|*|N(v)|}}<br>$$<br>N(u)表示用户u所购买的物品集合，|N(u)|则是其购买物品数目，N(v)一样，对象是用户v</p>
+<h3 id="一-找到与A用户兴趣相似的用户群B"><a href="#一-找到与A用户兴趣相似的用户群B" class="headerlink" title="一. 找到与A用户兴趣相似的用户群B"></a><strong><em>一. 找到与A用户兴趣相似的用户群B</em></strong></h3><h4 id="1-计算用户之间的相似度"><a href="#1-计算用户之间的相似度" class="headerlink" title="1. 计算用户之间的相似度"></a>1. 计算用户之间的相似度</h4><p>余弦相似度：</p>
+<script type="math/tex; mode=display">
+Wuv = \frac{|N(u)\bigcap N(v)|} {\sqrt{|N(u)|*|N(v)|}}</script><p>N(u)表示用户u所购买的物品集合，|N(u)|则是其购买物品数目，N(v)一样，对象是用户v</p>
 <p>分母表示用户u和v购买相同物品的数量</p>
 <p>余弦相似度的缺点： 时间复杂度是O(|V|*|U|)，这在用户数很大 时非常耗时</p>
 <h4 id="2-用户u对物品i的感兴趣程度"><a href="#2-用户u对物品i的感兴趣程度" class="headerlink" title="2. 用户u对物品i的感兴趣程度"></a>2. 用户u对物品i的感兴趣程度</h4><p>得到用户之间的兴趣相似度后，UserCF算法 会给用户推荐和他兴趣最相似的K个用户喜欢的物品</p>
-<img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412103052475.png" alt="image-20210412103052475" style="zoom:50%;" />
-
-
-
+<p><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412103052475.png" alt="image-20210412103052475" style="zoom:50%;" /></p>
 <p>r代表评分，在有评分的系统中它起到调整权重的作用，使得结果更加精准</p>
 <p>（u,k）表示用户u的相似群体</p>
 <h3 id="二-找到-B中用户喜欢的且A用户没有看见或买过的"><a href="#二-找到-B中用户喜欢的且A用户没有看见或买过的" class="headerlink" title="二. 找到 B中用户喜欢的且A用户没有看见或买过的"></a><strong><em>二. 找到 B中用户喜欢的且A用户没有看见或买过的</em></strong></h3><p>根据用户对物品的好感度分析，进行排序后即可生成排序列表，然后取需要的前n项推荐给用户</p>
-<h2 id="基于物品的推荐算法"><a href="#基于物品的推荐算法" class="headerlink" title="基于物品的推荐算法"></a>基于物品的推荐算法</h2><p>**基于物品的推荐算法是给A用户推荐与他之前喜欢的物品相似度高的物品的集合 **</p>
+<h2 id="基于物品的推荐算法"><a href="#基于物品的推荐算法" class="headerlink" title="基于物品的推荐算法"></a>基于物品的推荐算法</h2><p><strong>基于物品的推荐算法是给A用户推荐与他之前喜欢的物品相似度高的物品的集合 </strong></p>
 <h4 id="由于UserCF的缺陷"><a href="#由于UserCF的缺陷" class="headerlink" title="由于UserCF的缺陷"></a>由于UserCF的缺陷</h4><p>稀疏性：前期很难发现相似的用户</p>
 <p>扩展性：随着网站的用户数目越来越大，计算用户兴趣相似度矩阵将越来越困难，其运算时间复杂度和空间复杂度的增长和用户数的增长近似于平方关系</p>
 <h4 id="一-计算物品之间的相似度"><a href="#一-计算物品之间的相似度" class="headerlink" title="一. 计算物品之间的相似度"></a><strong><em>一. 计算物品之间的相似度</em></strong></h4><ol>
-<li><h5 id="计算物品i和j之间的相似度"><a href="#计算物品i和j之间的相似度" class="headerlink" title="计算物品i和j之间的相似度"></a>计算物品i和j之间的相似度</h5><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412104906864.png" alt="image-20210412104906864" style="zoom:50%;" />
-
+<li><h5 id="计算物品i和j之间的相似度"><a href="#计算物品i和j之间的相似度" class="headerlink" title="计算物品i和j之间的相似度"></a>计算物品i和j之间的相似度</h5><p><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412104906864.png" alt="image-20210412104906864" style="zoom:50%;" /></p>
 <p>|N(i)|是喜欢物品i的用户数，分子是同时喜欢物品i和物品j的用户</p>
 <p>喜欢物品i的用户中有多少比 例的用户也喜欢物品j</p>
 <p>如果j很热门，会导致Wij会很大，会导致如何物品和这个热门物品都会有很大的相似度，可以改进：</p>
-<img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412105403342.png" alt="image-20210412105403342" style="zoom:50%;" />
-
-<ol start="2">
+<p><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412105403342.png" alt="image-20210412105403342" style="zoom:50%;" /></p>
+<ol>
 <li><h5 id="计算用户对物品的感兴趣程度"><a href="#计算用户对物品的感兴趣程度" class="headerlink" title="计算用户对物品的感兴趣程度"></a>计算用户对物品的感兴趣程度</h5></li>
 </ol>
-<img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412105531040.png" alt="image-20210412105531040" style="zoom:50%;" />
-
+<p><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210412105531040.png" alt="image-20210412105531040" style="zoom:50%;" /></p>
 <p>N(u)是用户喜欢的物品的集合，S(j,K)是 和物品j最相似的K个物品的集合，r ui是用户u对物品i的兴趣程度</p>
 </li>
 </ol>
@@ -138,7 +134,7 @@
 <p><strong>机器学习聚类算法</strong></p>
 </li>
 <li><p>如何确定用户对物品类别的感兴趣程度？</p>
-<p>*<em>兴趣矩阵 = 用户和类别的矩阵</em>物品占类别的权重**</p>
+<p><strong>兴趣矩阵 = 用户和类别的矩阵*物品占类别的权重</strong></p>
 </li>
 <li><p>如果给一个类给计算机，计算机如何选择这个类中的物品推荐给用户，并且确定物品在这个类的权重。</p>
 </li>
@@ -148,17 +144,17 @@
 <p>隐性行为主要是用户隐性表现出来的，可以理解为用户不喜欢什么商品，例如点击了什么不推荐或者不感兴趣等等，这就是负样本</p>
 <p>对于用户，要保持正负样本平衡</p>
 <h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>按照物品的流行度采样出了那些热门的、但 用户却没有过行为的物品。经过采样，可以 得到一个用户—物品集 K {( u,i )} ，其中如果 (u, i)是正样本，则有 R ui = 1，否则有 R ui = 0. 然后，需要优化如下的损失函数来找到最合 适的参数p和q：</p>
-<p><img src="C:\Users\sw_zl\AppData\Roaming\Typora\typora-user-images\image-20210406130855467.png"></p>
+<p><img src="C:\Users\sw_zl\AppData\Roaming\Typora\typora-user-images\image-20210406130855467.png" alt=""></p>
 <p>损失函数最小化过程中获得参数</p>
 <p>损失函数的优化用随机梯度下降法，通过求参数的偏导数找到 最速下降方向，然后通过迭代法不断地优化参 数</p>
-<img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210406131134426.png" alt="image-20210406131134426" style="zoom:50%;" />
-
+<p><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210406131134426.png" alt="image-20210406131134426" style="zoom:50%;" /></p>
 <p>根据随机梯度下降法，需要将参数沿着最速下 降方向向前推进</p>
-<img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210406131530382.png" alt="image-20210406131530382" style="zoom:50%;" />
+<p><img src="C:%5CUsers%5Csw_zl%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210406131530382.png" alt="image-20210406131530382" style="zoom:50%;" /></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/12/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" data-id="ckne0h1x30000k4ud2t01f203" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/04/12/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" data-id="ckne3lno10001fcud1y451xgp" class="article-share-link">Share</a>
       
       
     </footer>
